@@ -1,17 +1,17 @@
 var questions=[
-    "How to declare a variable?",
-    " How do I declare a variable in JavaScript?",
-    'question 3',
+    "What is an Array?",
+    "How do I declare a variable in JavaScript?",
+    'What is a Stack?',
 ];
 var correctAnswer=[
     'answer 1',
-    'answer 20',
-    'answer 300',
+    'using var',
+    'a stack refers to a linear data structure performing operations in a last in first order',
 ]
 var answers=[
     ['answer 1', 'answer 2', 'answer 3', 'answer 4'],
-    ['answer 10', 'answer 20', 'answer 30', 'answer 40'],
-    ['answer 100', 'answer 200', 'answer 300', 'answer 400'],
+    ['using an array', 'using var', 'using a function', 'for, then statements'],
+    ['answer 100', 'answer 200', 'a stack refers to a linear data structure performing operations in a last in first order', 'answer 400'],
 ];
 var idx=0;
 var score= []
@@ -54,11 +54,18 @@ function NextQuestion(){
 
 
 }
+
+function initial(){
+
+}
+
 function CompleteQuiz(){
     var sum=0;
     var finalScore=0;
     for (var s in score){
         sum += score[s];
+        finalScore=Math.floor((sum/score.length) * 100);
+        localStorage.setItem("score", finalScore);
     }
     finalScore=Math.floor((sum/score.length) * 100);
     document.querySelector('#finalScore').innerHTML= sum.toString()+' of '+ score.length.toString()+'; '+finalScore.toString()+ '%';
