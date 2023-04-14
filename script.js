@@ -1,28 +1,39 @@
+var signUpButton = document.querySelector("#sign-up");
+
 var questions=[
     "What is an Array?",
     "How do I declare a variable in JavaScript?",
     'What is a Stack?',
 ];
 var correctAnswer=[
-    'answer 1',
+    'commonly referred to as a collection of items stored at contiguous memory locations',
     'using var',
     'a stack refers to a linear data structure performing operations in a last in first order',
 ]
 var answers=[
-    ['answer 1', 'answer 2', 'answer 3', 'answer 4'],
+    ['commonly referred to as a collection of items stored at contiguous memory locations', 'using functions', 'using var', 'using var'],
     ['using an array', 'using var', 'using a function', 'for, then statements'],
-    ['answer 100', 'answer 200', 'a stack refers to a linear data structure performing operations in a last in first order', 'answer 400'],
+    ['items stored are of the same type', 'organizes data so that a related set of values can easily sor', 'a stack refers to a linear data structure performing operations in a last in first order', 'using var'],
 ];
 var idx=0;
-var score= []
+var score= [];
+var timer=75;
+var time;
 
 
 function StartQuiz() {
     var button=document.querySelector("#startbutton");
     button.style.display='none';
 
-    NextQuestion();
+    NextQuestion(); 
+    StartTime();
 
+}
+function StartTime(){
+   time= setInterval(oneTick,1000);
+}
+function oneTick(){
+    document.querySelector('#spnTimer').innerHTML= timer--;
 }
 
 function MakeAnswerList(answers) {
@@ -51,12 +62,8 @@ function NextQuestion(){
     } else{
         CompleteQuiz();
     }
-
-
-}
-
-function initial(){
-
+    
+    
 }
 
 function CompleteQuiz(){
@@ -67,10 +74,25 @@ function CompleteQuiz(){
         finalScore=Math.floor((sum/score.length) * 100);
         localStorage.setItem("score", finalScore);
     }
-    finalScore=Math.floor((sum/score.length) * 100);
+    
+    
     document.querySelector('#finalScore').innerHTML= sum.toString()+' of '+ score.length.toString()+'; '+finalScore.toString()+ '%';
-
+    
     document.querySelector('.quiz').style.display= 'none';
     document.querySelector('.finalresult').style.display= 'block';
+    clearInterval(time);
+}
 
+function SubmitInitials(){
+    var initialsValue = document.getElementById('initials').value.trim();
+    localStorage.setItem("initials", initialsValue);
+    document.querySelector('.finalresult').style.display= 'none';
+    document.querySelector('.highscore').style.display= 'block';
+    ShowHighscore();
+}
+
+function ShowHighscore(){
+    console.log(localStorage.getItem('initials'));
+    document.querySelector('.score').innerHTML=localStorage.getItem('initials')+'...'
+    + localStorage.getItem('score');
 }

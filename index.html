@@ -4,23 +4,32 @@
     <title>Quiz Generator</title>
     <script type="text/javascript" src="script.js"></script>
     <link rel="stylesheet" href="style.css">
+    <title>Timed Quiz</title>
 
 </head>
 
 <body>
+    <div style="float:right" >Time <span Id= "spnTimer">0</span></div>
+    
     <div class="quiz">
         <div Id="question" class="question"> Welcome to the Quiz Generator</div>
         <div Id="answer" class="answers"></div>
         <div class="startbutton"><button Id="startbutton" onclick="StartQuiz()">Start</button></div>
         <div id="result"></div>
+        
     </div>
     <div class="finalresult">
         <label id="finalScore" class="score"></label>
         <br><br>
         <input type="text" name="initials" id="initials" placeholder="initials" />
-        <button id="sign-up">Record Initials</button>
+        <button onclick="SubmitInitials()">Submit</button>
         <button Id="startbutton" onclick="window.location.reload()">Reset Quiz</button>
 
+    </div>
+    <div class="highscore">
+        <h3>High Score</h3>
+        <hr>
+        <div class="score"></div>
     </div>
 </body>
 
